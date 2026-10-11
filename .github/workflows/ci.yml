@@ -1,0 +1,44 @@
+name: API checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: 'requirements*.txt'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m pytest -q -W error
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --tag geospatial-measurement-api:test .
+      - name: Check container health
+        run: |
+          docker run --detach --name geo-test --publish 127.0.0.1:8000:8000 geospatial-measurement-api:test
+          curl --fail --retry 15 --retry-connrefused --retry-delay 2 http://127.0.0.1:8000/health
+          curl --fail --form file=@examples/survey.kml http://127.0.0.1:8000/api/files/
+      - name: Show container logs
+        if: failure()
+        run: docker logs geo-test
+      - name: Clean up container
+        if: always()
+        run: docker rm --force geo-test

@@ -1,0 +1,111 @@
+{
+  "file_id": "00000000-0000-4000-8000-000000000001",
+  "total": 3,
+  "offset": 0,
+  "limit": 100,
+  "features": [
+    {
+      "index": 0,
+      "feature_id": "parcel-1",
+      "geometry_type": "Polygon",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.59,
+              12.97
+            ],
+            [
+              77.591,
+              12.97
+            ],
+            [
+              77.591,
+              12.971
+            ],
+            [
+              77.59,
+              12.971
+            ],
+            [
+              77.59,
+              12.97
+            ]
+          ]
+        ]
+      },
+      "crs": "EPSG:4326",
+      "properties": {
+        "name": "Survey parcel",
+        "category": "parcel"
+      },
+      "measurement": {
+        "status": "MEASURED",
+        "area_m2": 12003.110059673936,
+        "length_m": null,
+        "measurement_crs": "+proj=laea +lat_0=12.9704000000 +lon_0=77.5904000000 +datum=WGS84 +units=m +no_defs +type=crs",
+        "message": null,
+        "warnings": []
+      }
+    },
+    {
+      "index": 1,
+      "feature_id": "route-1",
+      "geometry_type": "LineString",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.59,
+            12.97
+          ],
+          [
+            77.591,
+            12.9705
+          ],
+          [
+            77.592,
+            12.971
+          ]
+        ]
+      },
+      "crs": "EPSG:4326",
+      "properties": {
+        "name": "Survey route"
+      },
+      "measurement": {
+        "status": "MEASURED",
+        "area_m2": null,
+        "length_m": 243.56914159623932,
+        "measurement_crs": "+proj=aeqd +lat_0=12.9705000000 +lon_0=77.5910000000 +datum=WGS84 +units=m +no_defs +type=crs",
+        "message": null,
+        "warnings": []
+      }
+    },
+    {
+      "index": 2,
+      "feature_id": "marker-1",
+      "geometry_type": "Point",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.59,
+          12.97
+        ]
+      },
+      "crs": "EPSG:4326",
+      "properties": {
+        "name": "Survey marker"
+      },
+      "measurement": {
+        "status": "NO_MEASUREMENT",
+        "area_m2": null,
+        "length_m": null,
+        "measurement_crs": null,
+        "message": "Points do not require a measurement.",
+        "warnings": []
+      }
+    }
+  ]
+}

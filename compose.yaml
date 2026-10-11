@@ -1,0 +1,18 @@
+services:
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      GEO_DATABASE_PATH: /srv/data/measurements.sqlite3
+      GEO_MAX_UPLOAD_BYTES: ${GEO_MAX_UPLOAD_BYTES:-20971520}
+      GEO_MAX_ARCHIVE_BYTES: ${GEO_MAX_ARCHIVE_BYTES:-104857600}
+      GEO_MAX_ARCHIVE_MEMBERS: ${GEO_MAX_ARCHIVE_MEMBERS:-100}
+      GEO_MAX_FEATURES: ${GEO_MAX_FEATURES:-10000}
+      GEO_MAX_COORDINATES: ${GEO_MAX_COORDINATES:-500000}
+    volumes:
+      - measurements:/srv/data
+    restart: unless-stopped
+
+volumes:
+  measurements:
