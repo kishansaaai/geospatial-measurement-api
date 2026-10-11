@@ -34,7 +34,7 @@ jobs:
       - name: Check container health
         run: |
           docker run --detach --name geo-test --publish 127.0.0.1:8000:8000 geospatial-measurement-api:test
-          curl --fail --retry 15 --retry-connrefused --retry-delay 2 http://127.0.0.1:8000/health
+          curl --fail --retry 15 --retry-all-errors --retry-delay 2 --max-time 3 --retry-max-time 60 http://127.0.0.1:8000/health
           curl --fail --form file=@examples/survey.kml http://127.0.0.1:8000/api/files/
       - name: Show container logs
         if: failure()
